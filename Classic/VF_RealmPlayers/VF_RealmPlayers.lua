@@ -312,12 +312,14 @@ function VF_RealmPlayers_Command(arg1)
 	end
 end
 
+!--- Translate to spanish -->
+
 function VF_RP_Help()
 	DEFAULT_CHAT_FRAME:AddMessage("VF RealmPlayers Version = "..VF_RealmPlayersVersion);
-	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers ToggleDebug - Toggles Debug/Inspect Output");
-	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers PrintInspected - Prints the inspected players so far");
-	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers PrintRecentlyInspected - Prints the recently inspected players(within last 2 minutes)");
-	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers Help - shows all commands");
+	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers ToggleDebug - Activa o desactiva el modo debug.");
+	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers PrintInspected - Imprime hasta ahora a los jugadores inspeccionados");
+	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers PrintRecentlyInspected - Imprime los jugadores inspeccionados recientemente (en los últimos 2 minutos)");
+	DEFAULT_CHAT_FRAME:AddMessage("/RealmPlayers Help - Ves todos tus comandos");
 end
 
 local VF_RecentlyInspected = {};
@@ -469,6 +471,18 @@ elseif(GetLocale() == "frFR") then
 	VF_RP_PetIdentifierStr = "Animaux d";
 	VF_RP_MinionIdentifierStr = "Serviteur d"; --"Serviteur d'" or "Serviteur de "
 	VF_RP_CompanionIdentifierStr = "Familier d"; --"Familier d'" or "Familier de "
+	VF_RP_LevelStrOffset = 8; --Niveau
+	VF_RP_GetPetOwnerFromStr = function(_Str, _PetIdentifierIndex)
+		local _, _, _, owner = string.find(_Str, "(.*)[' ](.*)");
+		return owner;
+	end
+elseif(GetLocale() == "esES") then
+	VF_RP_RunSpeed100 = "Aumenta tu velocidad un 100%.";
+	VF_RP_RunSpeed60 = "Aumenta tu velocidad un 60%.";
+	VF_RP_SlowSpeed = "Velocidad lenta...";
+	VF_RP_PetIdentifierStr = "Animal de";
+	VF_RP_MinionIdentifierStr = "Servidor de"; --"Serviteur d'" or "Serviteur de "
+	VF_RP_CompanionIdentifierStr = "Familiar de"; --"Familier d'" or "Familier de "
 	VF_RP_LevelStrOffset = 8; --Niveau
 	VF_RP_GetPetOwnerFromStr = function(_Str, _PetIdentifierIndex)
 		local _, _, _, owner = string.find(_Str, "(.*)[' ](.*)");
